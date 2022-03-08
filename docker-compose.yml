@@ -3,31 +3,25 @@ version: '3'
 services:
   frontend:
     build: frontend
+    # Enable colors in the output
+    tty: true
     volumes:
       - ./frontend/src:/usr/src/app/src
     ports:
       - 8000:8000
-    # Frontend starts after backend
-    depends_on:
-      - backend
     environment:
+      # Set an environment variable to use in the fetch as the port
       - BACKEND_PORT=9000
 
   backend:
     build: backend
-    command: ./wait-for database:5432 -- npm run dev
-    # Mount these folders to the container to update them
-    # without restarting docker-compose
+    command: npm run dev
+    tty: true
     volumes:
+      # Mount the source code to enable live reload
       - ./backend/src:/usr/src/app/src
+      # Mount the database files to make data persistent
+      - ./backend/db:/usr/src/app/db
     ports:
       - 9000:9000
 
-  database:
-    image: postgres:10-alpine
-    environment:
-      POSTGRES_DB: project
-      POSTGRES_PASSWORD: password
-      POSTGRES_USER: root
-    ports:
-      - 5432:5432

@@ -1,17 +1,14 @@
-/* DO NOT DELETE THESE LINES */
-
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
 
 import './assets/stylesheets/style.css';
 
-const { BACKEND_PORT } = process.env;
+// webpack hard-codes process.env.BACKEND_PORT in the build
+const BACKEND_PORT = process.env.BACKEND_PORT;
 const baseUrl = window.location.hostname;
 const backendUrl = `http://${baseUrl}:${BACKEND_PORT}`;
 
-/* ADD YOUR CODE AFTER THIS LINE */
-
+// Asynchronous function for getting data from the backend /api/greeting endpoint
 const getGreetingFromBackend = async () => {
   try {
     const url = `${backendUrl}/api/greeting`;
@@ -24,7 +21,6 @@ const getGreetingFromBackend = async () => {
   return { greeting: 'Could not get greeting from backend' };
 };
 
-
 const BackendGreeting = (props) => (
   <div>
     <p>
@@ -34,14 +30,6 @@ const BackendGreeting = (props) => (
     </p>
   </div>
 );
-
-BackendGreeting.propTypes = {
-  greeting: PropTypes.string,
-};
-
-BackendGreeting.defaultProps = {
-  greeting: '',
-};
 
 class App extends Component {
   constructor(props) {
@@ -62,8 +50,6 @@ class App extends Component {
     );
   }
 }
-
-/* DO NOT DELETE AFTER THIS LINE */
 
 ReactDOM.render(
   <App />,

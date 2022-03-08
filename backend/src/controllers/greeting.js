@@ -1,4 +1,3 @@
-
 exports.greet = async (ctx) => {
   const greetings = ['Hello!', 'Guten Tag!', 'Bonjour!', 'Moro!', 'Tere!'];
 

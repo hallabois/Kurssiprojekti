@@ -1,23 +1,21 @@
+// Import the sequelize library
 const Sequelize = require('sequelize');
+
+// Import the sequelize instance which has been configured for SQLite
 const sequelize = require('./sequelize');
 
+// Initialize chat table with a required (not null)
+// text field "message"
 const Chat = sequelize.define('chats', {
-  message: Sequelize.TEXT,
+  message: {
+    // Message field is a string
+    type: Sequelize.TEXT,
+    // Disallows creating chat entries without a message
+    allowNull: false,
+  },
 }, {
   timestamps: true,
 });
 
-// toJSON method is automatically called when the object is serialized in Koa
-Chat.prototype.toJSON = function toJSON() {
-  return {
-    // This is a unique id for each chat
-    id: this.id,
-    // Id and timestamps are generated automatically
-    createdAt: this.createdAt,
-
-    // Message was added on the POST request
-    message: this.message,
-  };
-};
-
+// Export the Chat model
 module.exports = Chat;

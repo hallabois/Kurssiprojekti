@@ -38,6 +38,7 @@ publicRouter.get('/chats', chats.list);
 
 publicRouter.post('/acceleration', accel.create);
 publicRouter.get('/acceleration', accel.list);
+publicRouter.delete('/acceleration', accel.clear);
 
 publicRouter.post('/events', events.create);
 publicRouter.get('/events', events.list);

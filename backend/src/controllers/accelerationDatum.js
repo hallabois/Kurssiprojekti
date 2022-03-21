@@ -20,3 +20,13 @@ exports.create = async (ctx) => {
   ctx.body = datum;
   ctx.status = 201;
 };
+
+exports.clear = async (ctx) => {
+  const result = await database.accelerationData.destroy({
+    where: {},
+    truncate: true
+  });
+    
+  ctx.body = "Removed everything succesfully";
+  ctx.status = 201;
+}

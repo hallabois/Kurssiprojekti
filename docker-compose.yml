@@ -1,20 +1,8 @@
 version: '3'
 
 services:
-  frontend:
-    build: frontend
-    # Enable colors in the output
-    tty: true
-    volumes:
-      - ./frontend/src:/usr/src/app/src
-    ports:
-      - 8000:8000
-    environment:
-      # Set an environment variable to use in the fetch as the port
-      - BACKEND_PORT=9000
-
   backend:
-    build: backend
+    build: .
     command: npm run dev
     tty: true
     volumes:

@@ -1,13 +1,17 @@
-const Sequelize = require('sequelize');
-const sequelize = require('./sequelize');
+import Sequelize from "sequelize";
+import sequelize from "./sequelize";
 
-const accelerationData = sequelize.define('accelerationData', {
-  x: Sequelize.INTEGER,
-  y: Sequelize.INTEGER,
-  z: Sequelize.INTEGER,
-}, {
-  timestamps: true,
-});
+const accelerationData = sequelize.define(
+  "accelerationData",
+  {
+    x: Sequelize.INTEGER,
+    y: Sequelize.INTEGER,
+    z: Sequelize.INTEGER,
+  },
+  {
+    timestamps: true,
+  }
+);
 
 // toJSON method is automatically called when the object is serialized in Koa
 accelerationData.prototype.toJSON = function toJSON() {
@@ -24,4 +28,4 @@ accelerationData.prototype.toJSON = function toJSON() {
   };
 };
 
-module.exports = accelerationData;
+export default accelerationData;

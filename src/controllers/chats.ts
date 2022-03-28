@@ -1,15 +1,15 @@
 // Import the database module which contains the models
-const database = require('../database');
+import { Chat } from "../database";
 
-// Lists Event entries in the database and returns them
+// Lists Chat entries in the database and returns them
 // in the response body with status code 200
-exports.list = async (ctx) => {
+let list = async (ctx) => {
   const options = {};
 
-  const events = await database.Event.findAll(options);
+  const chats = await Chat.findAll(options);
 
   const response = {
-    results: events,
+    results: chats,
   };
 
   ctx.body = response;
@@ -18,16 +18,15 @@ exports.list = async (ctx) => {
 // Creates a Chat entry in the database and returns it
 // in the response body with status code 201.
 // Fails with 500 if message was not provided
-exports.create = async (ctx) => {
+let create = async (ctx) => {
   const { body } = ctx.request;
 
-  const { temperature, humidity } = body;
+  const { message } = body;
 
-  const event = await database.Event.create({
-    temperature,
-    humidity,
-  });
+  const chat = await Chat.create({ message });
 
-  ctx.body = event;
+  ctx.body = chat;
   ctx.status = 201;
 };
+
+export default { list, create };

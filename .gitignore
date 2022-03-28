@@ -17,3 +17,6 @@ keys
 
 # Editors
 .vscode
+
+# Dist
+dist

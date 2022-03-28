@@ -1,5 +1,5 @@
-exports.greet = async (ctx) => {
-  const greetings = ['Hello!', 'Guten Tag!', 'Bonjour!', 'Moro!', 'Tere!'];
+let greet = async (ctx) => {
+  const greetings = ["Hello!", "Guten Tag!", "Bonjour!", "Moro!", "Tere!"];
 
   const greeting = greetings[Math.floor(Math.random() * greetings.length)];
 
@@ -9,3 +9,5 @@ exports.greet = async (ctx) => {
 
   ctx.body = response;
 };
+
+export default { greet };

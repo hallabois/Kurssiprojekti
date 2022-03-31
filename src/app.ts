@@ -8,6 +8,7 @@ import chats from "./controllers/chats";
 import accel from "./controllers/accelerationDatum";
 import greeting from "./controllers/greeting";
 import events from "./controllers/events";
+import temps from "./controllers/temps";
 
 // Create a new Koa instance for our API
 const app = new Koa();
@@ -36,6 +37,10 @@ publicRouter.get("/chats", chats.list);
 publicRouter.post("/acceleration", accel.create);
 publicRouter.get("/acceleration", accel.list);
 publicRouter.delete("/acceleration", accel.clear);
+
+publicRouter.post("/temperature", temps.create);
+publicRouter.get("/temperature", temps.list);
+publicRouter.delete("/temperature", temps.clear);
 
 publicRouter.post("/events", events.create);
 publicRouter.get("/events", events.list);
